@@ -26,3 +26,16 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('posts/{post}',function($slug){
+    $path = __DIR__ . "/../resources/posts/{post}.html";
+
+    if(!file_exists($path)){
+        dd('file does not exist');
+    }
+
+    $post = file_get_contents($path);
+
+    return view('post',['post' -> $post]);
+
+});
